@@ -97,7 +97,7 @@
 <meta property="og:site_name" content="zhucebuliaolongchuan">
 <meta property="og:description" content="Hi, I am Chuan. Welcome to my Blog. This blog is intended to record my study notes, life reflections, and even so called ‘artistic’ work. Now, let me share one of my mottos that inspires me a lot.   “">
 <meta property="og:image" content="http://google-ptoject-unss.weebly.com/uploads/2/4/5/1/24514354/6036680.jpg?439">
-<meta property="og:updated_time" content="2017-05-13T04:45:00.000Z">
+<meta property="og:updated_time" content="2017-05-13T19:40:15.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hello, World.">
 <meta name="twitter:description" content="Hi, I am Chuan. Welcome to my Blog. This blog is intended to record my study notes, life reflections, and even so called ‘artistic’ work. Now, let me share one of my mottos that inspires me a lot.   “">
@@ -141,9 +141,36 @@
 <body itemscope itemtype="http://schema.org/WebPage" lang="en">
 
   
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '',
+      xfbml      : true,
+      version    : 'v2.6'
+    });
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
 
 
 
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-99039750-1', 'auto');
+  ga('send', 'pageview');
+</script>
 
 
 
@@ -323,8 +350,7 @@
                   <i class="fa fa-comment-o"></i>
                 </span>
                 <a href="/2017/05/13/hello-world/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/05/13/hello-world/" itemprop="commentCount"></span>
+                  <span class="post-comments-count fb-comments-count" data-href="www.zhucebuliaolongchuan.com/2017/05/13/hello-world/" itemprop="commentCount">0</span> comments
                 </a>
               </span>
             
@@ -411,11 +437,11 @@
           
   <div class="comments" id="comments">
     
-      <div id="disqus_thread">
-        <noscript>
-          Please enable JavaScript to view the
-          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-        </noscript>
+      <div class="fb-comments"
+           data-href="www.zhucebuliaolongchuan.com/2017/05/13/hello-world/"
+           data-numposts="5"
+           data-width="100%"
+           data-colorscheme="light">
       </div>
     
   </div>
@@ -470,6 +496,35 @@
         
 
         <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/zhucebuliaolongchuan" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.linkedin.com/in/chuan-long/" target="_blank" title="Linkedin">
+                  
+                    <i class="fa fa-fw fa-linkedin"></i>
+                  
+                  Linkedin
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.facebook.com/chuan.long.775" target="_blank" title="Facebook">
+                  
+                    <i class="fa fa-fw fa-facebook"></i>
+                  
+                  Facebook
+                </a>
+              </span>
+            
           
         </div>
 
@@ -555,6 +610,8 @@
   
 
 
+  
+
 
 
 
@@ -582,6 +639,9 @@
 
   
   <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
 
 
   
@@ -614,26 +674,6 @@
 
   
 
-    
-      <script id="dsq-count-scr" src="https://zhucebuliaolongchuan..disqus.com/count.js" async></script>
-    
-
-    
-      <script type="text/javascript">
-        var disqus_config = function () {
-          this.page.url = 'www.zhucebuliaolongchuan.com/2017/05/13/hello-world/';
-          this.page.identifier = '2017/05/13/hello-world/';
-          this.page.title = 'Hello, World.';
-        };
-        var d = document, s = d.createElement('script');
-        s.src = 'https://zhucebuliaolongchuan..disqus.com/embed.js';
-        s.setAttribute('data-timestamp', '' + +new Date());
-        (d.head || d.body).appendChild(s);
-      </script>
-    
-
-  
-
 
 
 
@@ -652,6 +692,10 @@
   
 
 
+
+
+
+  
 
 
 

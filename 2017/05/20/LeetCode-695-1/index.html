@@ -86,7 +86,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="algorithm,LeetCode," />
+  <meta name="keywords" content="LeetCode,algorithm," />
 
 
 
@@ -102,17 +102,17 @@
 
 
 
-<meta name="description" content="LeetCode 713 - Subarray Product Less Than KYour are given an array of positive integers nums.   Count and print the number of (contiguous) subarrays where the product of all the elements in the subarr">
-<meta name="keywords" content="algorithm,LeetCode">
+<meta name="description" content="LeetCode 695 - Max Area of islands:Given a non-empty 2D array grid of 0’s and 1’s, an island is a group of 1’s (representing land) connected 4-directionally (horizontal or vertical.) You may assume al">
+<meta name="keywords" content="LeetCode,algorithm">
 <meta property="og:type" content="article">
-<meta property="og:title" content="LeetCode713">
-<meta property="og:url" content="https://zhucebuliaolongchuan.github.io/2017/10/22/LeetCode713/index.html">
+<meta property="og:title" content="LeetCode: Problems of &quot;islands&quot;">
+<meta property="og:url" content="https://zhucebuliaolongchuan.github.io/2017/05/20/LeetCode-695-1/index.html">
 <meta property="og:site_name" content="zhucebuliaolongchuan">
-<meta property="og:description" content="LeetCode 713 - Subarray Product Less Than KYour are given an array of positive integers nums.   Count and print the number of (contiguous) subarrays where the product of all the elements in the subarr">
-<meta property="og:updated_time" content="2017-10-22T21:38:16.000Z">
+<meta property="og:description" content="LeetCode 695 - Max Area of islands:Given a non-empty 2D array grid of 0’s and 1’s, an island is a group of 1’s (representing land) connected 4-directionally (horizontal or vertical.) You may assume al">
+<meta property="og:updated_time" content="2017-10-22T21:54:18.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="LeetCode713">
-<meta name="twitter:description" content="LeetCode 713 - Subarray Product Less Than KYour are given an array of positive integers nums.   Count and print the number of (contiguous) subarrays where the product of all the elements in the subarr">
+<meta name="twitter:title" content="LeetCode: Problems of &quot;islands&quot;">
+<meta name="twitter:description" content="LeetCode 695 - Max Area of islands:Given a non-empty 2D array grid of 0’s and 1’s, an island is a group of 1’s (representing land) connected 4-directionally (horizontal or vertical.) You may assume al">
 
 
 
@@ -140,13 +140,13 @@
 
 
 
-  <link rel="canonical" href="https://zhucebuliaolongchuan.github.io/2017/10/22/LeetCode713/"/>
+  <link rel="canonical" href="https://zhucebuliaolongchuan.github.io/2017/05/20/LeetCode-695-1/"/>
 
 
 
 
 
-  <title>LeetCode713 | zhucebuliaolongchuan</title>
+  <title>LeetCode: Problems of "islands" | zhucebuliaolongchuan</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="en">
@@ -312,7 +312,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://zhucebuliaolongchuan.github.io/2017/10/22/LeetCode713/">
+    <link itemprop="mainEntityOfPage" href="https://zhucebuliaolongchuan.github.io/2017/05/20/LeetCode-695-1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Chuan Long">
@@ -329,7 +329,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">LeetCode713</h2>
+          <h2 class="post-title" itemprop="name headline">LeetCode: Problems of "islands"</h2>
         
 
         <div class="post-meta">
@@ -341,25 +341,13 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-10-22T17:03:08-04:00">
-                2017-10-22
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-05-20T17:53:36-04:00">
+                2017-05-20
               </time>
             
 
             
-              <span class="post-meta-divider">|</span>
-            
 
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Post modified</span>
-              
-              <time title="Post modified" itemprop="dateModified" datetime="2017-10-22T17:38:16-04:00">
-                2017-10-22
-              </time>
             
           </span>
 
@@ -394,8 +382,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/10/22/LeetCode713/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count fb-comments-count" data-href="https://zhucebuliaolongchuan.github.io/2017/10/22/LeetCode713/" itemprop="commentCount">0</span> comments
+                <a href="/2017/05/20/LeetCode-695-1/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count fb-comments-count" data-href="https://zhucebuliaolongchuan.github.io/2017/05/20/LeetCode-695-1/" itemprop="commentCount">0</span> comments
                 </a>
               </span>
             
@@ -420,26 +408,47 @@
       
 
       
-        <h3 id="LeetCode-713-Subarray-Product-Less-Than-K"><a href="#LeetCode-713-Subarray-Product-Less-Than-K" class="headerlink" title="LeetCode 713 - Subarray Product Less Than K"></a>LeetCode 713 - Subarray Product Less Than K</h3><p>Your are given an array of positive integers nums.  </p>
-<p>Count and print the number of (contiguous) subarrays where the product of all the elements in the subarray is less than k.  </p>
+        <h3 id="LeetCode-695-Max-Area-of-islands"><a href="#LeetCode-695-Max-Area-of-islands" class="headerlink" title="LeetCode 695 - Max Area of islands:"></a>LeetCode 695 - Max Area of islands:</h3><p>Given a non-empty 2D array grid of 0’s and 1’s, an <strong>island</strong> is a group of 1’s (representing land) connected 4-directionally (horizontal or vertical.) You may assume all four edges of the grid are surrounded by water.</p>
+<p>Find the maximum area of an island in the given 2D array. (If there is no island, the maximum area is 0.)</p>
 <a id="more"></a>
-<p>Example 1:  </p>
-<pre><code>Input: nums = [10, 5, 2, 6], k = 100  
-Output: 8  
-Explanation: The 8 subarrays that have product less than 100 are: [10], [5], [2], [6], [10, 5], [5, 2], [2, 6], [5, 2, 6].  
-Note that [10, 5, 2] is not included as the product of 100 is not strictly less than k.  
-</code></pre><p><strong>Note:</strong></p>
-<ul>
-<li>0 &lt; nums.length &lt;= 50000.</li>
-<li>0 &lt; nums[i] &lt; 1000.</li>
-<li>0 &lt;= k &lt; 10^6.</li>
-</ul>
+<p><strong>Example 1:</strong></p>
+<pre><code>[[0,0,1,0,0,0,0,1,0,0,0,0,0],    
+ [0,0,0,0,0,0,0,1,1,1,0,0,0],  
+ [0,1,1,0,1,0,0,0,0,0,0,0,0],  
+ [0,1,0,0,1,1,0,0,1,0,1,0,0],  
+ [0,1,0,0,1,1,0,0,1,1,1,0,0],  
+ [0,0,0,0,0,0,0,0,0,0,1,0,0],  
+ [0,0,0,0,0,0,0,1,1,1,0,0,0],  
+ [0,0,0,0,0,0,0,1,1,0,0,0,0]]  
+</code></pre><p>Given the above grid, return 6. Note the answer is not 11, because the island must be connected 4-directionally.  </p>
+<p><strong>Example 2:</strong>  </p>
+<pre><code>[[0,0,0,0,0,0,0,0]]  
+</code></pre><p>Given the above grid, return 0.  </p>
+<p><strong>Note:</strong> The length of each dimension in the given grid does not exceed 50.</p>
 <hr>
-<h4 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h4><p>This is a medium problem from the latest leetcode weekly contest. It is very easy for us to come up with a brute force solution, which is to calculate product of every sub-array and then calcaute the number of them which are less than K. But both of its time complexity and space complexity are <strong>O(n</strong>2)**, and it is definitely not what we expect.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">numSubarrayProductLessThanK</span><span class="params">(self, nums, k)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        :type nums: List[int]</div><div class="line">        :type k: int</div><div class="line">        :rtype: int</div><div class="line">        """</div><div class="line">        dp = [[float(<span class="string">'inf'</span>) <span class="keyword">for</span> _ <span class="keyword">in</span> range(len(nums))] <span class="keyword">for</span> _ <span class="keyword">in</span> range(len(nums))]</div><div class="line">        res = <span class="number">0</span></div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(nums)):</div><div class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> range(i, len(nums)):</div><div class="line">                <span class="keyword">if</span> i == j:</div><div class="line">                    dp[i][j] = nums[i]</div><div class="line">                <span class="keyword">else</span>:</div><div class="line">                    dp[i][j] = dp[i][j - <span class="number">1</span>] * nums[j]</div><div class="line">                <span class="keyword">if</span> dp[i][j] &lt; k:</div><div class="line">                    res += <span class="number">1</span></div><div class="line">        <span class="keyword">return</span> res</div></pre></td></tr></table></figure>
-<p>So, can we solve it with linear time complexity? The answer is Yes!</p>
-<p>The way we can achieve that is we could calculate the product of subarray with a sliding window. Simply use the constant space to record the current product, <strong>for nums[i], count range [left,i)</strong>. And then we could get the number of fulfilled sub-arrays in this range. For this solution, the time complexity is <strong>O(n)</strong>, and the space complexity is <strong>O(1)</strong>.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">numSubarrayProductLessThanK</span><span class="params">(self, nums, k)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        :type nums: List[int]</div><div class="line">        :type k: int</div><div class="line">        :rtype: int</div><div class="line">        """</div><div class="line">        <span class="keyword">if</span> k &lt;= <span class="number">1</span>:</div><div class="line">            <span class="keyword">return</span> <span class="number">0</span></div><div class="line">        product, res, left = <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span></div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(nums)):</div><div class="line">            product *= nums[i]</div><div class="line">            <span class="keyword">while</span> product &gt;= k:</div><div class="line">                product /= nums[left]</div><div class="line">                left += <span class="number">1</span></div><div class="line">            res += i - left + <span class="number">1</span></div><div class="line">        <span class="keyword">return</span> res</div></pre></td></tr></table></figure>
+<h4 id="Solution"><a href="#Solution" class="headerlink" title="Solution:"></a>Solution:</h4><p>This problem is a very typical DFS problem. Two points that you should be noticed to solve this problem.  </p>
+<ul>
+<li>Simply revise the neighbor points to 0 if they equal to 0 to avoid the redundant access.  </li>
+<li>Record the maximum number of cells for each enter point.</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">maxAreaOfIsland</span><span class="params">(self, grid)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        :type grid: List[List[int]]</div><div class="line">        :rtype: int</div><div class="line">        """</div><div class="line">        res = <span class="number">0</span></div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(grid)):</div><div class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> range(len(grid[<span class="number">-1</span>])):</div><div class="line">                res = max(res, self.dfs(grid, i, j))</div><div class="line">        <span class="keyword">return</span> res</div><div class="line">        </div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">dfs</span><span class="params">(self, grid, x, y)</span>:</span></div><div class="line">        <span class="keyword">if</span> <span class="number">0</span> &lt;= x &lt; len(grid) <span class="keyword">and</span> <span class="number">0</span> &lt;= y &lt; len(grid[<span class="number">-1</span>]) <span class="keyword">and</span> grid[x][y] == <span class="number">1</span>:</div><div class="line">            grid[x][y] = <span class="number">0</span></div><div class="line">            <span class="keyword">return</span> <span class="number">1</span> + self.dfs(grid, x - <span class="number">1</span>, y) + self.dfs(grid, x + <span class="number">1</span>, y) + self.dfs(grid, x, y - <span class="number">1</span>) + self.dfs(grid, x, y + <span class="number">1</span>)</div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            <span class="keyword">return</span> <span class="number">0</span></div></pre></td></tr></table></figure>
+<p>Now, let’s see one more problem relating to “islands”.  </p>
+<h3 id="LeetCode-200-Number-of-islands"><a href="#LeetCode-200-Number-of-islands" class="headerlink" title="LeetCode 200 - Number of islands:"></a>LeetCode 200 - Number of islands:</h3><p>Given a 2d grid map of ‘1’s (land) and ‘0’s (water), count the number of islands. An island is surrounded by water and is formed by connecting adjacent lands horizontally or vertically. You may assume all four edges of the grid are all surrounded by water.  </p>
+<p><strong>Example 1:</strong>  </p>
+<pre><code>11110  
+11010  
+11000  
+00000  
+</code></pre><p><strong>Answer: 1</strong>  </p>
+<p><strong>Example 2:</strong>  </p>
+<pre><code>11000  
+11000  
+00100  
+00011  
+</code></pre><p><strong>Answer: 3</strong>  </p>
+<h4 id="Solution-1"><a href="#Solution-1" class="headerlink" title="Solution:"></a>Solution:</h4><p>This problem is tagged as a medium problem. But it is very similar as the previous one. The only different thing that we should notice is that we should count the number of islands other than the island which contains max number of cells.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">numIslands</span><span class="params">(self, grid)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        :type grid: List[List[str]]</div><div class="line">        :rtype: int</div><div class="line">        """</div><div class="line">        count = <span class="number">0</span></div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(grid)):</div><div class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> range(len(grid[<span class="number">-1</span>])):</div><div class="line">                <span class="keyword">if</span> grid[i][j] == <span class="string">'1'</span>:</div><div class="line">                    self.dfsMarking(i, j, grid)</div><div class="line">                    count += <span class="number">1</span></div><div class="line">        <span class="keyword">return</span> count</div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">dfsMarking</span><span class="params">(self, row, col, grid)</span>:</span></div><div class="line">        <span class="keyword">if</span> row &lt; <span class="number">0</span> <span class="keyword">or</span> col &lt; <span class="number">0</span> <span class="keyword">or</span> row &gt;= len(grid) <span class="keyword">or</span> col &gt;= len(grid[<span class="number">-1</span>]) <span class="keyword">or</span> grid[row][col] != <span class="string">'1'</span>:</div><div class="line">            <span class="keyword">return</span></div><div class="line">        grid[row][col] = <span class="string">'0'</span></div><div class="line">        self.dfsMarking(row - <span class="number">1</span>, col, grid)</div><div class="line">        self.dfsMarking(row + <span class="number">1</span>, col, grid)</div><div class="line">        self.dfsMarking(row, col - <span class="number">1</span>, grid)</div><div class="line">        self.dfsMarking(row, col + <span class="number">1</span>, grid)</div></pre></td></tr></table></figure>
+
       
     </div>
 
@@ -468,9 +477,9 @@ Note that [10, 5, 2] is not included as the product of 100 is not strictly less 
       
         <div class="post-tags">
           
-            <a href="/tags/algorithm/" rel="tag"># algorithm</a>
-          
             <a href="/tags/LeetCode/" rel="tag"># LeetCode</a>
+          
+            <a href="/tags/algorithm/" rel="tag"># algorithm</a>
           
         </div>
       
@@ -483,8 +492,8 @@ Note that [10, 5, 2] is not included as the product of 100 is not strictly less 
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/10/20/LeetCode-695-1/" rel="next" title="LeetCode: Problems of "islands"">
-                <i class="fa fa-chevron-left"></i> LeetCode: Problems of "islands"
+              <a href="/2016/08/20/hello-world/" rel="next" title="Hello, World.">
+                <i class="fa fa-chevron-left"></i> Hello, World.
               </a>
             
           </div>
@@ -492,6 +501,10 @@ Note that [10, 5, 2] is not included as the product of 100 is not strictly less 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/10/22/LeetCode-713/" rel="prev" title="LeetCode:Subarray Product Less Than K">
+                LeetCode:Subarray Product Less Than K <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -518,7 +531,7 @@ Note that [10, 5, 2] is not included as the product of 100 is not strictly less 
   <div class="comments" id="comments">
     
       <div class="fb-comments"
-           data-href="https://zhucebuliaolongchuan.github.io/2017/10/22/LeetCode713/"
+           data-href="https://zhucebuliaolongchuan.github.io/2017/05/20/LeetCode-695-1/"
            data-numposts="5"
            data-width="100%"
            data-colorscheme="light">
@@ -717,6 +730,8 @@ Note that [10, 5, 2] is not included as the product of 100 is not strictly less 
   
 
 
+  
+
 
 
 
@@ -744,6 +759,9 @@ Note that [10, 5, 2] is not included as the product of 100 is not strictly less 
 
   
   <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
 
 
   

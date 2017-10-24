@@ -86,7 +86,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Chuan Long's Personal Blog" />
+  <meta name="keywords" content="Leetcode,System Design," />
 
 
 
@@ -102,15 +102,17 @@
 
 
 
-<meta name="description" content="Great just isn&apos;t good enough.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="zhucebuliaolongchuan">
-<meta property="og:url" content="https://zhucebuliaolongchuan.github.io/index.html">
+<meta name="description" content="Implement TrieWhat is a Trie(Prefix Tree)? In computer science, a trie, also called digital tree and sometimes radix tree or prefix tree (as they can be searched by prefixes), is a kind of search tree">
+<meta name="keywords" content="Leetcode,System Design">
+<meta property="og:type" content="article">
+<meta property="og:title" content="How to implement Trie(Prefix Tree)?">
+<meta property="og:url" content="https://zhucebuliaolongchuan.github.io/2017/10/24/LeetCode208/index.html">
 <meta property="og:site_name" content="zhucebuliaolongchuan">
-<meta property="og:description" content="Great just isn&apos;t good enough.">
+<meta property="og:description" content="Implement TrieWhat is a Trie(Prefix Tree)? In computer science, a trie, also called digital tree and sometimes radix tree or prefix tree (as they can be searched by prefixes), is a kind of search tree">
+<meta property="og:updated_time" content="2017-10-24T05:27:18.955Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="zhucebuliaolongchuan">
-<meta name="twitter:description" content="Great just isn&apos;t good enough.">
+<meta name="twitter:title" content="How to implement Trie(Prefix Tree)?">
+<meta name="twitter:description" content="Implement TrieWhat is a Trie(Prefix Tree)? In computer science, a trie, also called digital tree and sometimes radix tree or prefix tree (as they can be searched by prefixes), is a kind of search tree">
 
 
 
@@ -138,13 +140,13 @@
 
 
 
-  <link rel="canonical" href="https://zhucebuliaolongchuan.github.io/"/>
+  <link rel="canonical" href="https://zhucebuliaolongchuan.github.io/2017/10/24/LeetCode208/"/>
 
 
 
 
 
-  <title>zhucebuliaolongchuan</title>
+  <title>How to implement Trie(Prefix Tree)? | zhucebuliaolongchuan</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="en">
@@ -196,9 +198,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-   page-home 
- ">
+  <div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -301,9 +301,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -329,9 +329,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/10/24/LeetCode208/" itemprop="url">How to implement Trie(Prefix Tree)?</a></h2>
+          <h2 class="post-title" itemprop="name headline">How to implement Trie(Prefix Tree)?</h2>
         
 
         <div class="post-meta">
@@ -421,522 +419,81 @@
       
 
       
-        
-          <h3 id="Implement-Trie"><a href="#Implement-Trie" class="headerlink" title="Implement Trie"></a>Implement Trie</h3><h4 id="What-is-a-Trie-Prefix-Tree"><a href="#What-is-a-Trie-Prefix-Tree" class="headerlink" title="What is a Trie(Prefix Tree)?"></a>What is a Trie(Prefix Tree)?</h4><blockquote>
+        <h3 id="Implement-Trie"><a href="#Implement-Trie" class="headerlink" title="Implement Trie"></a>Implement Trie</h3><h4 id="What-is-a-Trie-Prefix-Tree"><a href="#What-is-a-Trie-Prefix-Tree" class="headerlink" title="What is a Trie(Prefix Tree)?"></a>What is a Trie(Prefix Tree)?</h4><blockquote>
 <p>In computer science, a trie, also called digital tree and sometimes radix tree or prefix tree (as they can be searched by prefixes), is a kind of search tree—an ordered tree data structure that is used to store a dynamic set or associative array where the keys are usually strings. Unlike a binary search tree, no node in the tree stores the key associated with that node; instead, its position in the tree defines the key with which it is associated. All the descendants of a node have a common prefix of the string associated with that node, and the root is associated with the empty string. Values are not necessarily associated with every node. Rather, values tend only to be associated with leaves, and with some inner nodes that correspond to keys of interest. <a href="https://en.wikipedia.org/wiki/Trie" target="_blank" rel="external">Definition from Wiki</a></p>
 </blockquote>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/10/24/LeetCode208/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+<a id="more"></a>
+<h4 id="Implementation"><a href="#Implementation" class="headerlink" title="Implementation"></a>Implementation</h4><p>The main idea of this implementation is that one of the attributes of TrieNode() is the Hashing of TrieNode(). It is kind of tricky. And the other attribute indicate that whether the prefix is a word or not. Simply using the high-level container data-type to represent each node of the trie. The following code shows that a trie with <strong>insert</strong>, <strong>search</strong>, and <strong>startswith</strong> methods.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">TrieNode</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></div><div class="line">        self.children = collections.defaultdict(TrieNode)</div><div class="line">        self.is_word = <span class="keyword">False</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Trie</span><span class="params">(object)</span>:</span></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        Initialize your data structure here.</div><div class="line">        """</div><div class="line">        self.root = TrieNode()</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">insert</span><span class="params">(self, word)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        Inserts a word into the trie.</div><div class="line">        :type word: str</div><div class="line">        :rtype: void</div><div class="line">        """</div><div class="line">        node = self.root</div><div class="line">        <span class="keyword">for</span> char <span class="keyword">in</span> word:</div><div class="line">            node = node.children[char]</div><div class="line">        node.is_word = <span class="keyword">True</span></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">search</span><span class="params">(self, word)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        Returns if the word is in the trie.</div><div class="line">        :type word: str</div><div class="line">        :rtype: bool</div><div class="line">        """</div><div class="line">        node = self.root</div><div class="line">        <span class="keyword">for</span> char <span class="keyword">in</span> word:</div><div class="line">            <span class="keyword">if</span> node.children.get(char) != <span class="keyword">None</span>:</div><div class="line">                node = node.children[char]</div><div class="line">            <span class="keyword">else</span>:</div><div class="line">                <span class="keyword">return</span> <span class="keyword">False</span></div><div class="line">        <span class="keyword">return</span> node.is_word</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">startsWith</span><span class="params">(self, prefix)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        Returns if there is any word in the trie that starts with the given prefix.</div><div class="line">        :type prefix: str</div><div class="line">        :rtype: bool</div><div class="line">        """</div><div class="line">        node = self.root</div><div class="line">        <span class="keyword">for</span> char <span class="keyword">in</span> prefix:</div><div class="line">            <span class="keyword">if</span> node.children.get(char) != <span class="keyword">None</span>:</div><div class="line">                node = node.children[char]</div><div class="line">            <span class="keyword">else</span>:</div><div class="line">                <span class="keyword">return</span> <span class="keyword">False</span></div><div class="line">        <span class="keyword">return</span> <span class="keyword">True</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="comment"># Your Trie object will be instantiated and called as such:</span></div><div class="line"><span class="comment"># obj = Trie()</span></div><div class="line"><span class="comment"># word = "Test"</span></div><div class="line"><span class="comment"># prefix = "Tes"</span></div><div class="line"><span class="comment"># obj.insert(word)</span></div><div class="line"><span class="comment"># param_2 = obj.search(word)</span></div><div class="line"><span class="comment"># param_3 = obj.startsWith(prefix)</span></div></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
         
+
       
     </div>
 
     <div>
       
-    </div>
+        
 
-    <div>
       
     </div>
 
     <div>
+      
+        
+
       
     </div>
 
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://zhucebuliaolongchuan.github.io/2017/10/22/LeetCode-713/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Chuan Long">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="zhucebuliaolongchuan">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/10/22/LeetCode-713/" itemprop="url">Subarray Product Less Than K</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-10-22T17:03:08-04:00">
-                2017-10-22
-              </time>
-            
-
-            
-
-            
-          </span>
-
+        <div class="post-tags">
           
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/LeetCode/" itemprop="url" rel="index">
-                    <span itemprop="name">LeetCode</span>
-                  </a>
-                </span>
-
-                
-                
-                  , 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/LeetCode/algorithm/" itemprop="url" rel="index">
-                    <span itemprop="name">algorithm</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
+            <a href="/tags/Leetcode/" rel="tag"># Leetcode</a>
           
-
+            <a href="/tags/System-Design/" rel="tag"># System Design</a>
           
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/10/22/LeetCode-713/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count fb-comments-count" data-href="https://zhucebuliaolongchuan.github.io/2017/10/22/LeetCode-713/" itemprop="commentCount">0</span> comments
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
         </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
         
-          <h3 id="LeetCode-713-Subarray-Product-Less-Than-K"><a href="#LeetCode-713-Subarray-Product-Less-Than-K" class="headerlink" title="LeetCode 713 - Subarray Product Less Than K"></a>LeetCode 713 - Subarray Product Less Than K</h3><p>Your are given an array of positive integers nums.  </p>
-<p>Count and print the number of (contiguous) subarrays where the product of all the elements in the subarray is less than k.  </p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/10/22/LeetCode-713/#more" rel="contents">
-              Read more &raquo;
-            </a>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/10/22/LeetCode-713/" rel="next" title="Subarray Product Less Than K">
+                <i class="fa fa-chevron-left"></i> Subarray Product Less Than K
+              </a>
+            
           </div>
-          <!--/noindex-->
-        
-      
-    </div>
 
-    <div>
-      
-    </div>
+          <span class="post-nav-divider"></span>
 
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://zhucebuliaolongchuan.github.io/2017/05/20/LeetCode-695-1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Chuan Long">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="zhucebuliaolongchuan">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/05/20/LeetCode-695-1/" itemprop="url">Problems of "islands"</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
+          <div class="post-nav-prev post-nav-item">
             
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-05-20T17:53:36-04:00">
-                2017-05-20
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/LeetCode/" itemprop="url" rel="index">
-                    <span itemprop="name">LeetCode</span>
-                  </a>
-                </span>
-
-                
-                
-                  , 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/LeetCode/algorithm/" itemprop="url" rel="index">
-                    <span itemprop="name">algorithm</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/05/20/LeetCode-695-1/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count fb-comments-count" data-href="https://zhucebuliaolongchuan.github.io/2017/05/20/LeetCode-695-1/" itemprop="commentCount">0</span> comments
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
+          </div>
         </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          <h3 id="LeetCode-695-Max-Area-of-islands"><a href="#LeetCode-695-Max-Area-of-islands" class="headerlink" title="LeetCode 695 - Max Area of islands:"></a>LeetCode 695 - Max Area of islands:</h3><p>Given a non-empty 2D array grid of 0’s and 1’s, an <strong>island</strong> is a group of 1’s (representing land) connected 4-directionally (horizontal or vertical.) You may assume all four edges of the grid are surrounded by water.</p>
-<p>Find the maximum area of an island in the given 2D array. (If there is no island, the maximum area is 0.)</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/05/20/LeetCode-695-1/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </article>
 
 
-    
-      
 
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://zhucebuliaolongchuan.github.io/2016/08/20/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Chuan Long">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="zhucebuliaolongchuan">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/08/20/hello-world/" itemprop="url">Hello, World.</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-08-20T12:40:12-04:00">
-                2016-08-20
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/life/" itemprop="url" rel="index">
-                    <span itemprop="name">life</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2016/08/20/hello-world/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count fb-comments-count" data-href="https://zhucebuliaolongchuan.github.io/2016/08/20/hello-world/" itemprop="commentCount">0</span> comments
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>Hi, I am Chuan.</p>
-<p>Welcome to my Blog.</p>
-<p>This blog is intended to record my study notes, life reflections, and even so called ‘artistic’ work.</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2016/08/20/hello-world/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
+    <div class="post-spread">
       
     </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-  </section>
-
-  
+  </div>
 
 
           </div>
@@ -944,6 +501,17 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div class="fb-comments"
+           data-href="https://zhucebuliaolongchuan.github.io/2017/10/24/LeetCode208/"
+           data-numposts="5"
+           data-width="100%"
+           data-colorscheme="light">
+      </div>
+    
+  </div>
+
 
         </div>
         
@@ -1189,6 +757,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
 
   
 

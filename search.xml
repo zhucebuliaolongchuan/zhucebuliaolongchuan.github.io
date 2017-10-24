@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title><![CDATA[Backtracking Problems]]></title>
+    <url>%2F2017%2F10%2F24%2FBacktrack-Problem%2F</url>
+    <content type="text"><![CDATA[Updating… Subsets(Distinct Number)Given a set of distinct integers, nums, return all possible subsets (the power set). Note: The solution set must not contain duplicate subsets. For example,If nums = [1,2,3], a solution is: [ [3], [1], [2], [1,2,3], [1,3], [2,3], [1,2], [] ] Solution123456789101112131415class Solution(object): def subsets(self, nums): """ :type nums: List[int] :rtype: List[List[int]] """ self.res = [] self.backtrack(nums, [], 0) return self.res def backtrack(self, nums, temp_nums, index): self.res.append(temp_nums) for i in range(index, len(nums)): self.backtrack(nums, temp_nums + [nums[i]], i + 1) return None Subsets II(Duplicate Numbers)Given a collection of integers that might contain duplicates, nums, return all possible subsets (the power set). Note: The solution set must not contain duplicate subsets. For example,If nums = [1,2,2], a solution is: [ [2], [1], [1,2,2], [2,2], [1,2], [] ] Please note that, to handle the duplicate number, we need to sort the list first, and then skip the duplicate number during backtracking. Solution123456789101112131415161718class Solution(object): def subsetsWithDup(self, nums): """ :type nums: List[int] :rtype: List[List[int]] """ nums.sort() self.res = [] self.backtrack(nums, [], 0) return self.res def backtrack(self, nums, temp_nums, index): self.res.append(temp_nums) for i in range(index, len(nums)): if i &gt; index and nums[i - 1] == nums[i]: continue self.backtrack(nums, temp_nums + [nums[i]], i + 1) return None]]></content>
+      <categories>
+        <category>LeetCode</category>
+        <category>algorithm</category>
+        <category>backtracking</category>
+      </categories>
+      <tags>
+        <tag>LeetCode</tag>
+        <tag>algorithm</tag>
+        <tag>backtracking</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[How to implement Trie(Prefix Tree)?]]></title>
+    <url>%2F2017%2F10%2F24%2FLeetCode208%2F</url>
+    <content type="text"><![CDATA[Implement TrieWhat is a Trie(Prefix Tree)? In computer science, a trie, also called digital tree and sometimes radix tree or prefix tree (as they can be searched by prefixes), is a kind of search tree—an ordered tree data structure that is used to store a dynamic set or associative array where the keys are usually strings. Unlike a binary search tree, no node in the tree stores the key associated with that node; instead, its position in the tree defines the key with which it is associated. All the descendants of a node have a common prefix of the string associated with that node, and the root is associated with the empty string. Values are not necessarily associated with every node. Rather, values tend only to be associated with leaves, and with some inner nodes that correspond to keys of interest. Definition from Wiki ImplementationThe main idea of this implementation is that one of the attributes of TrieNode() is the Hashing of TrieNode(). It is kind of tricky. And the other attribute indicate that whether the prefix is a word or not. Simply using the high-level container data-type to represent each node of the trie. The following code shows that a trie with insert, search, and startswith methods. 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960class TrieNode(object): def __init__(self): self.children = collections.defaultdict(TrieNode) self.is_word = Falseclass Trie(object): def __init__(self): """ Initialize your data structure here. """ self.root = TrieNode() def insert(self, word): """ Inserts a word into the trie. :type word: str :rtype: void """ node = self.root for char in word: node = node.children[char] node.is_word = True def search(self, word): """ Returns if the word is in the trie. :type word: str :rtype: bool """ node = self.root for char in word: if node.children.get(char) != None: node = node.children[char] else: return False return node.is_word def startsWith(self, prefix): """ Returns if there is any word in the trie that starts with the given prefix. :type prefix: str :rtype: bool """ node = self.root for char in prefix: if node.children.get(char) != None: node = node.children[char] else: return False return True# Your Trie object will be instantiated and called as such:# obj = Trie()# word = "Test"# prefix = "Tes"# obj.insert(word)# param_2 = obj.search(word)# param_3 = obj.startsWith(prefix)]]></content>
+      <categories>
+        <category>LeetCode</category>
+        <category>System Design</category>
+      </categories>
+      <tags>
+        <tag>Leetcode</tag>
+        <tag>System Design</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Subarray Product Less Than K]]></title>
+    <url>%2F2017%2F10%2F22%2FLeetCode-713%2F</url>
+    <content type="text"><![CDATA[LeetCode 713 - Subarray Product Less Than KYour are given an array of positive integers nums. Count and print the number of (contiguous) subarrays where the product of all the elements in the subarray is less than k. Example 1: Input: nums = [10, 5, 2, 6], k = 100 Output: 8 Explanation: The 8 subarrays that have product less than 100 are: [10], [5], [2], [6], [10, 5], [5, 2], [2, 6], [5, 2, 6]. Note that [10, 5, 2] is not included as the product of 100 is not strictly less than k. Note: 0 &lt; nums.length &lt;= 50000. 0 &lt; nums[i] &lt; 1000. 0 &lt;= k &lt; 10^6. SolutionThis is a medium problem from the latest leetcode weekly contest. It is very easy for us to come up with a brute force solution, which is to calculate product of every sub-array and then calcaute the number of them which are less than K. But both of its time complexity and space complexity are O(n2)**, and it is definitely not what we expect. 123456789101112131415161718class Solution(object): def numSubarrayProductLessThanK(self, nums, k): """ :type nums: List[int] :type k: int :rtype: int """ dp = [[float('inf') for _ in range(len(nums))] for _ in range(len(nums))] res = 0 for i in range(len(nums)): for j in range(i, len(nums)): if i == j: dp[i][j] = nums[i] else: dp[i][j] = dp[i][j - 1] * nums[j] if dp[i][j] &lt; k: res += 1 return res So, can we solve it with linear time complexity? The answer is Yes! The way we can achieve that is we could calculate the product of subarray with a sliding window. Simply use the constant space to record the current product, for nums[i], count range [left,i). And then we could get the number of fulfilled sub-arrays in this range. For this solution, the time complexity is O(n), and the space complexity is O(1) 1234567891011121314151617class Solution(object): def numSubarrayProductLessThanK(self, nums, k): """ :type nums: List[int] :type k: int :rtype: int """ if k &lt;= 1: return 0 product, res, left = 1, 0, 0 for i in range(len(nums)): product *= nums[i] while product &gt;= k: product /= nums[left] left += 1 res += i - left + 1 return res]]></content>
+      <categories>
+        <category>LeetCode</category>
+        <category>algorithm</category>
+      </categories>
+      <tags>
+        <tag>LeetCode</tag>
+        <tag>algorithm</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Problems of "islands"]]></title>
+    <url>%2F2017%2F05%2F20%2FLeetCode-695-1%2F</url>
+    <content type="text"><![CDATA[LeetCode 695 - Max Area of islands:Given a non-empty 2D array grid of 0’s and 1’s, an island is a group of 1’s (representing land) connected 4-directionally (horizontal or vertical.) You may assume all four edges of the grid are surrounded by water. Find the maximum area of an island in the given 2D array. (If there is no island, the maximum area is 0.) Example 1: [[0,0,1,0,0,0,0,1,0,0,0,0,0], [0,0,0,0,0,0,0,1,1,1,0,0,0], [0,1,1,0,1,0,0,0,0,0,0,0,0], [0,1,0,0,1,1,0,0,1,0,1,0,0], [0,1,0,0,1,1,0,0,1,1,1,0,0], [0,0,0,0,0,0,0,0,0,0,1,0,0], [0,0,0,0,0,0,0,1,1,1,0,0,0], [0,0,0,0,0,0,0,1,1,0,0,0,0]] Given the above grid, return 6. Note the answer is not 11, because the island must be connected 4-directionally. Example 2: [[0,0,0,0,0,0,0,0]] Given the above grid, return 0. Note: The length of each dimension in the given grid does not exceed 50. Solution:This problem is a very typical DFS problem. Two points that you should be noticed to solve this problem. Simply revise the neighbor points to 0 if they equal to 0 to avoid the redundant access. Record the maximum number of cells for each enter point. 123456789101112131415161718class Solution(object): def maxAreaOfIsland(self, grid): """ :type grid: List[List[int]] :rtype: int """ res = 0 for i in range(len(grid)): for j in range(len(grid[-1])): res = max(res, self.dfs(grid, i, j)) return res def dfs(self, grid, x, y): if 0 &lt;= x &lt; len(grid) and 0 &lt;= y &lt; len(grid[-1]) and grid[x][y] == 1: grid[x][y] = 0 return 1 + self.dfs(grid, x - 1, y) + self.dfs(grid, x + 1, y) + self.dfs(grid, x, y - 1) + self.dfs(grid, x, y + 1) else: return 0 Now, let’s see one more problem relating to “islands”. LeetCode 200 - Number of islands:Given a 2d grid map of ‘1’s (land) and ‘0’s (water), count the number of islands. An island is surrounded by water and is formed by connecting adjacent lands horizontally or vertically. You may assume all four edges of the grid are all surrounded by water. Example 1: 11110 11010 11000 00000 Answer: 1 Example 2: 11000 11000 00100 00011 Answer: 3 Solution:This problem is tagged as a medium problem. But it is very similar as the previous one. The only different thing that we should notice is that we should count the number of islands other than the island which contains max number of cells. 123456789101112131415161718192021class Solution(object): def numIslands(self, grid): """ :type grid: List[List[str]] :rtype: int """ count = 0 for i in range(len(grid)): for j in range(len(grid[-1])): if grid[i][j] == '1': self.dfsMarking(i, j, grid) count += 1 return count def dfsMarking(self, row, col, grid): if row &lt; 0 or col &lt; 0 or row &gt;= len(grid) or col &gt;= len(grid[-1]) or grid[row][col] != '1': return grid[row][col] = '0' self.dfsMarking(row - 1, col, grid) self.dfsMarking(row + 1, col, grid) self.dfsMarking(row, col - 1, grid) self.dfsMarking(row, col + 1, grid)]]></content>
+      <categories>
+        <category>LeetCode</category>
+        <category>algorithm</category>
+      </categories>
+      <tags>
+        <tag>LeetCode</tag>
+        <tag>algorithm</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Hello, World.]]></title>
+    <url>%2F2016%2F08%2F20%2Fhello-world%2F</url>
+    <content type="text"><![CDATA[Hi, I am Chuan. Welcome to my Blog. This blog is intended to record my study notes, life reflections, and even so called ‘artistic’ work. Now, let me share one of my mottos that inspires me a lot. “Great just isn’t good enough.”]]></content>
+      <categories>
+        <category>life</category>
+      </categories>
+  </entry>
+</search>

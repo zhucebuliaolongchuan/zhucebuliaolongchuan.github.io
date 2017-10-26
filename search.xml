@@ -1,65 +1,226 @@
 <?xml version="1.0" encoding="utf-8"?>
-<search>
-  <entry>
-    <title><![CDATA[Backtracking Problems]]></title>
-    <url>%2F2017%2F10%2F24%2FBacktrack-Problem%2F</url>
-    <content type="text"><![CDATA[Updating… Subsets(Distinct Number)Given a set of distinct integers, nums, return all possible subsets (the power set). Note: The solution set must not contain duplicate subsets. For example,If nums = [1,2,3], a solution is: [ [3], [1], [2], [1,2,3], [1,3], [2,3], [1,2], [] ] Solution123456789101112131415class Solution(object): def subsets(self, nums): """ :type nums: List[int] :rtype: List[List[int]] """ self.res = [] self.backtrack(nums, [], 0) return self.res def backtrack(self, nums, temp_nums, index): self.res.append(temp_nums) for i in range(index, len(nums)): self.backtrack(nums, temp_nums + [nums[i]], i + 1) return None Subsets II(Duplicate Numbers)Given a collection of integers that might contain duplicates, nums, return all possible subsets (the power set). Note: The solution set must not contain duplicate subsets. For example,If nums = [1,2,2], a solution is: [ [2], [1], [1,2,2], [2,2], [1,2], [] ] Please note that, to handle the duplicate number, we need to sort the list first, and then skip the duplicate number during backtracking. Solution123456789101112131415161718class Solution(object): def subsetsWithDup(self, nums): """ :type nums: List[int] :rtype: List[List[int]] """ nums.sort() self.res = [] self.backtrack(nums, [], 0) return self.res def backtrack(self, nums, temp_nums, index): self.res.append(temp_nums) for i in range(index, len(nums)): if i &gt; index and nums[i - 1] == nums[i]: continue self.backtrack(nums, temp_nums + [nums[i]], i + 1) return None]]></content>
-      <categories>
-        <category>LeetCode</category>
-        <category>algorithm</category>
-        <category>backtracking</category>
-      </categories>
-      <tags>
-        <tag>algorithm</tag>
-        <tag>LeetCode</tag>
-        <tag>backtracking</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[How to implement Trie(Prefix Tree)?]]></title>
-    <url>%2F2017%2F10%2F24%2FLeetCode208%2F</url>
-    <content type="text"><![CDATA[Implement TrieWhat is a Trie(Prefix Tree)? In computer science, a trie, also called digital tree and sometimes radix tree or prefix tree (as they can be searched by prefixes), is a kind of search tree—an ordered tree data structure that is used to store a dynamic set or associative array where the keys are usually strings. Unlike a binary search tree, no node in the tree stores the key associated with that node; instead, its position in the tree defines the key with which it is associated. All the descendants of a node have a common prefix of the string associated with that node, and the root is associated with the empty string. Values are not necessarily associated with every node. Rather, values tend only to be associated with leaves, and with some inner nodes that correspond to keys of interest. Definition from Wiki ImplementationThe main idea of this implementation is that one of the attributes of TrieNode() is the Hashing of TrieNode(). It is kind of tricky. And the other attribute indicate that whether the prefix is a word or not. Simply using the high-level container data-type to represent each node of the trie. The following code shows that a trie with insert, search, and startswith methods. 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960class TrieNode(object): def __init__(self): self.children = collections.defaultdict(TrieNode) self.is_word = Falseclass Trie(object): def __init__(self): """ Initialize your data structure here. """ self.root = TrieNode() def insert(self, word): """ Inserts a word into the trie. :type word: str :rtype: void """ node = self.root for char in word: node = node.children[char] node.is_word = True def search(self, word): """ Returns if the word is in the trie. :type word: str :rtype: bool """ node = self.root for char in word: if node.children.get(char) != None: node = node.children[char] else: return False return node.is_word def startsWith(self, prefix): """ Returns if there is any word in the trie that starts with the given prefix. :type prefix: str :rtype: bool """ node = self.root for char in prefix: if node.children.get(char) != None: node = node.children[char] else: return False return True# Your Trie object will be instantiated and called as such:# obj = Trie()# word = "Test"# prefix = "Tes"# obj.insert(word)# param_2 = obj.search(word)# param_3 = obj.startsWith(prefix)]]></content>
-      <categories>
-        <category>LeetCode</category>
-        <category>System Design</category>
-      </categories>
-      <tags>
-        <tag>Leetcode</tag>
-        <tag>System Design</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Subarray Product Less Than K]]></title>
-    <url>%2F2017%2F10%2F22%2FLeetCode-713%2F</url>
-    <content type="text"><![CDATA[LeetCode 713 - Subarray Product Less Than KYour are given an array of positive integers nums. Count and print the number of (contiguous) subarrays where the product of all the elements in the subarray is less than k. Example 1: Input: nums = [10, 5, 2, 6], k = 100 Output: 8 Explanation: The 8 subarrays that have product less than 100 are: [10], [5], [2], [6], [10, 5], [5, 2], [2, 6], [5, 2, 6]. Note that [10, 5, 2] is not included as the product of 100 is not strictly less than k. Note: 0 &lt; nums.length &lt;= 50000. 0 &lt; nums[i] &lt; 1000. 0 &lt;= k &lt; 10^6. SolutionThis is a medium problem from the latest leetcode weekly contest. It is very easy for us to come up with a brute force solution, which is to calculate product of every sub-array and then calcaute the number of them which are less than K. But both of its time complexity and space complexity are O(n2)**, and it is definitely not what we expect. 123456789101112131415161718class Solution(object): def numSubarrayProductLessThanK(self, nums, k): """ :type nums: List[int] :type k: int :rtype: int """ dp = [[float('inf') for _ in range(len(nums))] for _ in range(len(nums))] res = 0 for i in range(len(nums)): for j in range(i, len(nums)): if i == j: dp[i][j] = nums[i] else: dp[i][j] = dp[i][j - 1] * nums[j] if dp[i][j] &lt; k: res += 1 return res So, can we solve it with linear time complexity? The answer is Yes! The way we can achieve that is we could calculate the product of subarray with a sliding window. Simply use the constant space to record the current product, for nums[i], count range [left,i). And then we could get the number of fulfilled sub-arrays in this range. For this solution, the time complexity is O(n), and the space complexity is O(1) 1234567891011121314151617class Solution(object): def numSubarrayProductLessThanK(self, nums, k): """ :type nums: List[int] :type k: int :rtype: int """ if k &lt;= 1: return 0 product, res, left = 1, 0, 0 for i in range(len(nums)): product *= nums[i] while product &gt;= k: product /= nums[left] left += 1 res += i - left + 1 return res]]></content>
-      <categories>
-        <category>LeetCode</category>
-        <category>algorithm</category>
-      </categories>
-      <tags>
-        <tag>algorithm</tag>
-        <tag>LeetCode</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Problems of "islands"]]></title>
-    <url>%2F2017%2F05%2F20%2FLeetCode-695-1%2F</url>
-    <content type="text"><![CDATA[LeetCode 695 - Max Area of islands:Given a non-empty 2D array grid of 0’s and 1’s, an island is a group of 1’s (representing land) connected 4-directionally (horizontal or vertical.) You may assume all four edges of the grid are surrounded by water. Find the maximum area of an island in the given 2D array. (If there is no island, the maximum area is 0.) Example 1: [[0,0,1,0,0,0,0,1,0,0,0,0,0], [0,0,0,0,0,0,0,1,1,1,0,0,0], [0,1,1,0,1,0,0,0,0,0,0,0,0], [0,1,0,0,1,1,0,0,1,0,1,0,0], [0,1,0,0,1,1,0,0,1,1,1,0,0], [0,0,0,0,0,0,0,0,0,0,1,0,0], [0,0,0,0,0,0,0,1,1,1,0,0,0], [0,0,0,0,0,0,0,1,1,0,0,0,0]] Given the above grid, return 6. Note the answer is not 11, because the island must be connected 4-directionally. Example 2: [[0,0,0,0,0,0,0,0]] Given the above grid, return 0. Note: The length of each dimension in the given grid does not exceed 50. Solution:This problem is a very typical DFS problem. Two points that you should be noticed to solve this problem. Simply revise the neighbor points to 0 if they equal to 0 to avoid the redundant access. Record the maximum number of cells for each enter point. 123456789101112131415161718class Solution(object): def maxAreaOfIsland(self, grid): """ :type grid: List[List[int]] :rtype: int """ res = 0 for i in range(len(grid)): for j in range(len(grid[-1])): res = max(res, self.dfs(grid, i, j)) return res def dfs(self, grid, x, y): if 0 &lt;= x &lt; len(grid) and 0 &lt;= y &lt; len(grid[-1]) and grid[x][y] == 1: grid[x][y] = 0 return 1 + self.dfs(grid, x - 1, y) + self.dfs(grid, x + 1, y) + self.dfs(grid, x, y - 1) + self.dfs(grid, x, y + 1) else: return 0 Now, let’s see one more problem relating to “islands”. LeetCode 200 - Number of islands:Given a 2d grid map of ‘1’s (land) and ‘0’s (water), count the number of islands. An island is surrounded by water and is formed by connecting adjacent lands horizontally or vertically. You may assume all four edges of the grid are all surrounded by water. Example 1: 11110 11010 11000 00000 Answer: 1 Example 2: 11000 11000 00100 00011 Answer: 3 Solution:This problem is tagged as a medium problem. But it is very similar as the previous one. The only different thing that we should notice is that we should count the number of islands other than the island which contains max number of cells. 123456789101112131415161718192021class Solution(object): def numIslands(self, grid): """ :type grid: List[List[str]] :rtype: int """ count = 0 for i in range(len(grid)): for j in range(len(grid[-1])): if grid[i][j] == '1': self.dfsMarking(i, j, grid) count += 1 return count def dfsMarking(self, row, col, grid): if row &lt; 0 or col &lt; 0 or row &gt;= len(grid) or col &gt;= len(grid[-1]) or grid[row][col] != '1': return grid[row][col] = '0' self.dfsMarking(row - 1, col, grid) self.dfsMarking(row + 1, col, grid) self.dfsMarking(row, col - 1, grid) self.dfsMarking(row, col + 1, grid)]]></content>
-      <categories>
-        <category>LeetCode</category>
-        <category>algorithm</category>
-      </categories>
-      <tags>
-        <tag>algorithm</tag>
-        <tag>LeetCode</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Hello, World.]]></title>
-    <url>%2F2016%2F08%2F20%2Fhello-world%2F</url>
-    <content type="text"><![CDATA[Hi, I am Chuan. Welcome to my Blog. This blog is intended to record my study notes, life reflections, and even so called ‘artistic’ work. Now, let me share one of my mottos that inspires me a lot. “Great just isn’t good enough.”]]></content>
-      <categories>
-        <category>life</category>
-      </categories>
-  </entry>
+<search> 
+  
+    
+    <entry>
+      <title><![CDATA[Backtracking Problems]]></title>
+      <url>/2017/10/24/Backtrack-Problem/</url>
+      <content type="html"><![CDATA[<blockquote>
+<p>Updating…</p>
+</blockquote>
+<h3 id="Subsets-Distinct-Number"><a href="#Subsets-Distinct-Number" class="headerlink" title="Subsets(Distinct Number)"></a>Subsets(Distinct Number)</h3><p>Given a set of <strong>distinct</strong> integers, nums, return all possible subsets (the power set).</p>
+<p><strong>Note:</strong> The solution set must not contain duplicate subsets.</p>
+<a id="more"></a>
+<p>For example,<br>If <strong>nums = [1,2,3]</strong>, a solution is:</p>
+<pre><code>[  
+  [3],  
+  [1],  
+  [2],  
+  [1,2,3],  
+  [1,3],  
+  [2,3],  
+  [1,2],  
+  []  
+]  
+</code></pre><h4 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">subsets</span><span class="params">(self, nums)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        :type nums: List[int]</div><div class="line">        :rtype: List[List[int]]</div><div class="line">        """</div><div class="line">        self.res = []</div><div class="line">        self.backtrack(nums, [], <span class="number">0</span>)</div><div class="line">        <span class="keyword">return</span> self.res</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">backtrack</span><span class="params">(self, nums, temp_nums, index)</span>:</span></div><div class="line">        self.res.append(temp_nums)</div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(index, len(nums)):</div><div class="line">            self.backtrack(nums, temp_nums + [nums[i]], i + <span class="number">1</span>)</div><div class="line">        <span class="keyword">return</span> <span class="keyword">None</span></div></pre></td></tr></table></figure>
+<h3 id="Subsets-II-Duplicate-Numbers"><a href="#Subsets-II-Duplicate-Numbers" class="headerlink" title="Subsets II(Duplicate Numbers)"></a>Subsets II(Duplicate Numbers)</h3><p>Given a collection of integers that might contain duplicates, <strong>nums</strong>, return all possible subsets (the power set).</p>
+<p><strong>Note:</strong> The solution set must not contain duplicate subsets.</p>
+<p>For example,<br>If <strong>nums</strong> = [1,2,2], a solution is:</p>
+<pre><code>[  
+  [2], 
+  [1],  
+  [1,2,2],  
+  [2,2],  
+  [1,2],  
+  []  
+]  
+</code></pre><p>Please note that, to handle the duplicate number, we need to sort the list first, and then skip the duplicate number during backtracking.</p>
+<h4 id="Solution-1"><a href="#Solution-1" class="headerlink" title="Solution"></a>Solution</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">subsetsWithDup</span><span class="params">(self, nums)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        :type nums: List[int]</div><div class="line">        :rtype: List[List[int]]</div><div class="line">        """</div><div class="line">        nums.sort()</div><div class="line">        self.res = []</div><div class="line">        self.backtrack(nums, [], <span class="number">0</span>)</div><div class="line">        <span class="keyword">return</span> self.res</div><div class="line">        </div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">backtrack</span><span class="params">(self, nums, temp_nums, index)</span>:</span></div><div class="line">        self.res.append(temp_nums)</div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(index, len(nums)):</div><div class="line">            <span class="keyword">if</span> i &gt; index <span class="keyword">and</span> nums[i - <span class="number">1</span>] == nums[i]:</div><div class="line">                <span class="keyword">continue</span></div><div class="line">            self.backtrack(nums, temp_nums + [nums[i]], i + <span class="number">1</span>)</div><div class="line">        <span class="keyword">return</span> <span class="keyword">None</span></div></pre></td></tr></table></figure>]]></content>
+      
+        <categories>
+            
+            <category> LeetCode </category>
+            
+            <category> algorithm </category>
+            
+            <category> backtracking </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> LeetCode </tag>
+            
+            <tag> algorithm </tag>
+            
+            <tag> backtracking </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[How to implement Trie(Prefix Tree)?]]></title>
+      <url>/2017/10/24/LeetCode208/</url>
+      <content type="html"><![CDATA[<h3 id="Implement-Trie"><a href="#Implement-Trie" class="headerlink" title="Implement Trie"></a>Implement Trie</h3><h4 id="What-is-a-Trie-Prefix-Tree"><a href="#What-is-a-Trie-Prefix-Tree" class="headerlink" title="What is a Trie(Prefix Tree)?"></a>What is a Trie(Prefix Tree)?</h4><blockquote>
+<p>In computer science, a trie, also called digital tree and sometimes radix tree or prefix tree (as they can be searched by prefixes), is a kind of search tree—an ordered tree data structure that is used to store a dynamic set or associative array where the keys are usually strings. Unlike a binary search tree, no node in the tree stores the key associated with that node; instead, its position in the tree defines the key with which it is associated. All the descendants of a node have a common prefix of the string associated with that node, and the root is associated with the empty string. Values are not necessarily associated with every node. Rather, values tend only to be associated with leaves, and with some inner nodes that correspond to keys of interest. <a href="https://en.wikipedia.org/wiki/Trie" target="_blank" rel="external">Definition from Wiki</a></p>
+</blockquote>
+<a id="more"></a>
+<h4 id="Implementation"><a href="#Implementation" class="headerlink" title="Implementation"></a>Implementation</h4><p>The main idea of this implementation is that one of the attributes of TrieNode() is the Hashing of TrieNode(). It is kind of tricky. And the other attribute indicate that whether the prefix is a word or not. Simply using the high-level container data-type to represent each node of the trie. The following code shows that a trie with <strong>insert</strong>, <strong>search</strong>, and <strong>startswith</strong> methods.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">TrieNode</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></div><div class="line">        self.children = collections.defaultdict(TrieNode)</div><div class="line">        self.is_word = <span class="keyword">False</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Trie</span><span class="params">(object)</span>:</span></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        Initialize your data structure here.</div><div class="line">        """</div><div class="line">        self.root = TrieNode()</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">insert</span><span class="params">(self, word)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        Inserts a word into the trie.</div><div class="line">        :type word: str</div><div class="line">        :rtype: void</div><div class="line">        """</div><div class="line">        node = self.root</div><div class="line">        <span class="keyword">for</span> char <span class="keyword">in</span> word:</div><div class="line">            node = node.children[char]</div><div class="line">        node.is_word = <span class="keyword">True</span></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">search</span><span class="params">(self, word)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        Returns if the word is in the trie.</div><div class="line">        :type word: str</div><div class="line">        :rtype: bool</div><div class="line">        """</div><div class="line">        node = self.root</div><div class="line">        <span class="keyword">for</span> char <span class="keyword">in</span> word:</div><div class="line">            <span class="keyword">if</span> node.children.get(char) != <span class="keyword">None</span>:</div><div class="line">                node = node.children[char]</div><div class="line">            <span class="keyword">else</span>:</div><div class="line">                <span class="keyword">return</span> <span class="keyword">False</span></div><div class="line">        <span class="keyword">return</span> node.is_word</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">startsWith</span><span class="params">(self, prefix)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        Returns if there is any word in the trie that starts with the given prefix.</div><div class="line">        :type prefix: str</div><div class="line">        :rtype: bool</div><div class="line">        """</div><div class="line">        node = self.root</div><div class="line">        <span class="keyword">for</span> char <span class="keyword">in</span> prefix:</div><div class="line">            <span class="keyword">if</span> node.children.get(char) != <span class="keyword">None</span>:</div><div class="line">                node = node.children[char]</div><div class="line">            <span class="keyword">else</span>:</div><div class="line">                <span class="keyword">return</span> <span class="keyword">False</span></div><div class="line">        <span class="keyword">return</span> <span class="keyword">True</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="comment"># Your Trie object will be instantiated and called as such:</span></div><div class="line"><span class="comment"># obj = Trie()</span></div><div class="line"><span class="comment"># word = "Test"</span></div><div class="line"><span class="comment"># prefix = "Tes"</span></div><div class="line"><span class="comment"># obj.insert(word)</span></div><div class="line"><span class="comment"># param_2 = obj.search(word)</span></div><div class="line"><span class="comment"># param_3 = obj.startsWith(prefix)</span></div></pre></td></tr></table></figure>
+]]></content>
+      
+        <categories>
+            
+            <category> LeetCode </category>
+            
+            <category> System Design </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Leetcode </tag>
+            
+            <tag> System Design </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Subarray Product Less Than K]]></title>
+      <url>/2017/10/22/LeetCode-713/</url>
+      <content type="html"><![CDATA[<h3 id="LeetCode-713-Subarray-Product-Less-Than-K"><a href="#LeetCode-713-Subarray-Product-Less-Than-K" class="headerlink" title="LeetCode 713 - Subarray Product Less Than K"></a>LeetCode 713 - Subarray Product Less Than K</h3><p>Your are given an array of positive integers nums.  </p>
+<p>Count and print the number of (contiguous) subarrays where the product of all the elements in the subarray is less than k.  </p>
+<a id="more"></a>
+<p>Example 1:  </p>
+<pre><code>Input: nums = [10, 5, 2, 6], k = 100  
+Output: 8  
+Explanation: The 8 subarrays that have product less than 100 are: [10], [5], [2], [6], [10, 5], [5, 2], [2, 6], [5, 2, 6].  
+Note that [10, 5, 2] is not included as the product of 100 is not strictly less than k.  
+</code></pre><p><strong>Note:</strong></p>
+<ul>
+<li>0 &lt; nums.length &lt;= 50000.</li>
+<li>0 &lt; nums[i] &lt; 1000.</li>
+<li>0 &lt;= k &lt; 10^6.</li>
+</ul>
+<hr>
+<h4 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h4><p>This is a medium problem from the latest leetcode weekly contest. It is very easy for us to come up with a brute force solution, which is to calculate product of every sub-array and then calcaute the number of them which are less than K. But both of its time complexity and space complexity are <strong>O(n</strong>2)**, and it is definitely not what we expect.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">numSubarrayProductLessThanK</span><span class="params">(self, nums, k)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        :type nums: List[int]</div><div class="line">        :type k: int</div><div class="line">        :rtype: int</div><div class="line">        """</div><div class="line">        dp = [[float(<span class="string">'inf'</span>) <span class="keyword">for</span> _ <span class="keyword">in</span> range(len(nums))] <span class="keyword">for</span> _ <span class="keyword">in</span> range(len(nums))]</div><div class="line">        res = <span class="number">0</span></div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(nums)):</div><div class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> range(i, len(nums)):</div><div class="line">                <span class="keyword">if</span> i == j:</div><div class="line">                    dp[i][j] = nums[i]</div><div class="line">                <span class="keyword">else</span>:</div><div class="line">                    dp[i][j] = dp[i][j - <span class="number">1</span>] * nums[j]</div><div class="line">                <span class="keyword">if</span> dp[i][j] &lt; k:</div><div class="line">                    res += <span class="number">1</span></div><div class="line">        <span class="keyword">return</span> res</div></pre></td></tr></table></figure>
+<p>So, can we solve it with linear time complexity? The answer is Yes!</p>
+<p>The way we can achieve that is we could calculate the product of subarray with a sliding window. Simply use the constant space to record the current product, <strong>for nums[i], count range [left,i)</strong>. And then we could get the number of fulfilled sub-arrays in this range. For this solution, the time complexity is <strong>O(n)</strong>, and the space complexity is <strong>O(1)</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">numSubarrayProductLessThanK</span><span class="params">(self, nums, k)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        :type nums: List[int]</div><div class="line">        :type k: int</div><div class="line">        :rtype: int</div><div class="line">        """</div><div class="line">        <span class="keyword">if</span> k &lt;= <span class="number">1</span>:</div><div class="line">            <span class="keyword">return</span> <span class="number">0</span></div><div class="line">        product, res, left = <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span></div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(nums)):</div><div class="line">            product *= nums[i]</div><div class="line">            <span class="keyword">while</span> product &gt;= k:</div><div class="line">                product /= nums[left]</div><div class="line">                left += <span class="number">1</span></div><div class="line">            res += i - left + <span class="number">1</span></div><div class="line">        <span class="keyword">return</span> res</div></pre></td></tr></table></figure>
+]]></content>
+      
+        <categories>
+            
+            <category> LeetCode </category>
+            
+            <category> algorithm </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> LeetCode </tag>
+            
+            <tag> algorithm </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Problems of "islands"]]></title>
+      <url>/2017/05/20/LeetCode-695-1/</url>
+      <content type="html"><![CDATA[<h3 id="LeetCode-695-Max-Area-of-islands"><a href="#LeetCode-695-Max-Area-of-islands" class="headerlink" title="LeetCode 695 - Max Area of islands:"></a>LeetCode 695 - Max Area of islands:</h3><p>Given a non-empty 2D array grid of 0’s and 1’s, an <strong>island</strong> is a group of 1’s (representing land) connected 4-directionally (horizontal or vertical.) You may assume all four edges of the grid are surrounded by water.</p>
+<p>Find the maximum area of an island in the given 2D array. (If there is no island, the maximum area is 0.)</p>
+<a id="more"></a>
+<p><strong>Example 1:</strong></p>
+<pre><code>[[0,0,1,0,0,0,0,1,0,0,0,0,0],    
+ [0,0,0,0,0,0,0,1,1,1,0,0,0],  
+ [0,1,1,0,1,0,0,0,0,0,0,0,0],  
+ [0,1,0,0,1,1,0,0,1,0,1,0,0],  
+ [0,1,0,0,1,1,0,0,1,1,1,0,0],  
+ [0,0,0,0,0,0,0,0,0,0,1,0,0],  
+ [0,0,0,0,0,0,0,1,1,1,0,0,0],  
+ [0,0,0,0,0,0,0,1,1,0,0,0,0]]  
+</code></pre><p>Given the above grid, return 6. Note the answer is not 11, because the island must be connected 4-directionally.  </p>
+<p><strong>Example 2:</strong>  </p>
+<pre><code>[[0,0,0,0,0,0,0,0]]  
+</code></pre><p>Given the above grid, return 0.  </p>
+<p><strong>Note:</strong> The length of each dimension in the given grid does not exceed 50.</p>
+<hr>
+<h4 id="Solution"><a href="#Solution" class="headerlink" title="Solution:"></a>Solution:</h4><p>This problem is a very typical DFS problem. Two points that you should be noticed to solve this problem.  </p>
+<ul>
+<li>Simply revise the neighbor points to 0 if they equal to 0 to avoid the redundant access.  </li>
+<li>Record the maximum number of cells for each enter point.</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">maxAreaOfIsland</span><span class="params">(self, grid)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        :type grid: List[List[int]]</div><div class="line">        :rtype: int</div><div class="line">        """</div><div class="line">        res = <span class="number">0</span></div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(grid)):</div><div class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> range(len(grid[<span class="number">-1</span>])):</div><div class="line">                res = max(res, self.dfs(grid, i, j))</div><div class="line">        <span class="keyword">return</span> res</div><div class="line">        </div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">dfs</span><span class="params">(self, grid, x, y)</span>:</span></div><div class="line">        <span class="keyword">if</span> <span class="number">0</span> &lt;= x &lt; len(grid) <span class="keyword">and</span> <span class="number">0</span> &lt;= y &lt; len(grid[<span class="number">-1</span>]) <span class="keyword">and</span> grid[x][y] == <span class="number">1</span>:</div><div class="line">            grid[x][y] = <span class="number">0</span></div><div class="line">            <span class="keyword">return</span> <span class="number">1</span> + self.dfs(grid, x - <span class="number">1</span>, y) + self.dfs(grid, x + <span class="number">1</span>, y) + self.dfs(grid, x, y - <span class="number">1</span>) + self.dfs(grid, x, y + <span class="number">1</span>)</div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            <span class="keyword">return</span> <span class="number">0</span></div></pre></td></tr></table></figure>
+<p>Now, let’s see one more problem relating to “islands”.  </p>
+<h3 id="LeetCode-200-Number-of-islands"><a href="#LeetCode-200-Number-of-islands" class="headerlink" title="LeetCode 200 - Number of islands:"></a>LeetCode 200 - Number of islands:</h3><p>Given a 2d grid map of ‘1’s (land) and ‘0’s (water), count the number of islands. An island is surrounded by water and is formed by connecting adjacent lands horizontally or vertically. You may assume all four edges of the grid are all surrounded by water.  </p>
+<p><strong>Example 1:</strong>  </p>
+<pre><code>11110  
+11010  
+11000  
+00000  
+</code></pre><p><strong>Answer: 1</strong>  </p>
+<p><strong>Example 2:</strong>  </p>
+<pre><code>11000  
+11000  
+00100  
+00011  
+</code></pre><p><strong>Answer: 3</strong>  </p>
+<h4 id="Solution-1"><a href="#Solution-1" class="headerlink" title="Solution:"></a>Solution:</h4><p>This problem is tagged as a medium problem. But it is very similar as the previous one. The only different thing that we should notice is that we should count the number of islands other than the island which contains max number of cells.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">numIslands</span><span class="params">(self, grid)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        :type grid: List[List[str]]</div><div class="line">        :rtype: int</div><div class="line">        """</div><div class="line">        count = <span class="number">0</span></div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(grid)):</div><div class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> range(len(grid[<span class="number">-1</span>])):</div><div class="line">                <span class="keyword">if</span> grid[i][j] == <span class="string">'1'</span>:</div><div class="line">                    self.dfsMarking(i, j, grid)</div><div class="line">                    count += <span class="number">1</span></div><div class="line">        <span class="keyword">return</span> count</div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">dfsMarking</span><span class="params">(self, row, col, grid)</span>:</span></div><div class="line">        <span class="keyword">if</span> row &lt; <span class="number">0</span> <span class="keyword">or</span> col &lt; <span class="number">0</span> <span class="keyword">or</span> row &gt;= len(grid) <span class="keyword">or</span> col &gt;= len(grid[<span class="number">-1</span>]) <span class="keyword">or</span> grid[row][col] != <span class="string">'1'</span>:</div><div class="line">            <span class="keyword">return</span></div><div class="line">        grid[row][col] = <span class="string">'0'</span></div><div class="line">        self.dfsMarking(row - <span class="number">1</span>, col, grid)</div><div class="line">        self.dfsMarking(row + <span class="number">1</span>, col, grid)</div><div class="line">        self.dfsMarking(row, col - <span class="number">1</span>, grid)</div><div class="line">        self.dfsMarking(row, col + <span class="number">1</span>, grid)</div></pre></td></tr></table></figure>
+]]></content>
+      
+        <categories>
+            
+            <category> LeetCode </category>
+            
+            <category> algorithm </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> LeetCode </tag>
+            
+            <tag> algorithm </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Hello, World.]]></title>
+      <url>/2016/08/20/hello-world/</url>
+      <content type="html"><![CDATA[<p>Hi, I am Chuan.</p>
+<p>Welcome to my Blog.</p>
+<p>This blog is intended to record my study notes, life reflections, and even so called ‘artistic’ work.</p>
+<a id="more"></a>
+<p>Now, let me share one of my mottos that inspires me a lot.</p>
+<blockquote>
+<p> “Great just isn’t good enough.”</p>
+</blockquote>
+<p><img src="http://google-ptoject-unss.weebly.com/uploads/2/4/5/1/24514354/6036680.jpg?439" alt="&#39;Don&#39;t be evil&#39;"></p>
+]]></content>
+      
+        <categories>
+            
+            <category> life </category>
+            
+        </categories>
+        
+        
+    </entry>
+    
+  
+  
 </search>

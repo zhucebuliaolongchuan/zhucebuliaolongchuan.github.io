@@ -99,7 +99,7 @@
 <meta name="description" content="Great just isn&apos;t good enough.">
 <meta property="og:type" content="website">
 <meta property="og:title" content="zhucebuliaolongchuan">
-<meta property="og:url" content="https://zhucebuliaolongchuan.github.io/tags/Leetcode/index.html">
+<meta property="og:url" content="https://zhucebuliaolongchuan.github.io/tags/LeetCode/index.html">
 <meta property="og:site_name" content="zhucebuliaolongchuan">
 <meta property="og:description" content="Great just isn&apos;t good enough.">
 <meta name="twitter:card" content="summary">
@@ -132,13 +132,13 @@
 
 
 
-  <link rel="canonical" href="https://zhucebuliaolongchuan.github.io/tags/Leetcode/"/>
+  <link rel="canonical" href="https://zhucebuliaolongchuan.github.io/tags/LeetCode/"/>
 
 
 
 
 
-  <title>Tag: Leetcode | zhucebuliaolongchuan</title>
+  <title>Tag: LeetCode | zhucebuliaolongchuan</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="en">
@@ -330,7 +330,7 @@
 
   <div id="posts" class="posts-collapse">
     <div class="collection-title">
-      <h2>Leetcode<small>Tag</small>
+      <h2>LeetCode<small>Tag</small>
       </h2>
     </div>
 
@@ -342,9 +342,9 @@
 
       <h3 class="post-title">
         
-            <a class="post-title-link" href="/2017/10/24/LeetCode208/" itemprop="url">
+            <a class="post-title-link" href="/2017/10/24/Backtrack-Problem/" itemprop="url">
               
-                <span itemprop="name">How to implement Trie(Prefix Tree)?</span>
+                <span itemprop="name">Backtracking Problems</span>
               
             </a>
         
@@ -352,9 +352,65 @@
 
       <div class="post-meta">
         <time class="post-time" itemprop="dateCreated"
-              datetime="2017-10-24T01:15:30-04:00"
+              datetime="2017-10-24T15:39:39-04:00"
               content="2017-10-24" >
           10-24
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h3 class="post-title">
+        
+            <a class="post-title-link" href="/2017/10/22/LeetCode-713/" itemprop="url">
+              
+                <span itemprop="name">Subarray Product Less Than K</span>
+              
+            </a>
+        
+      </h3>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2017-10-22T17:03:08-04:00"
+              content="2017-10-22" >
+          10-22
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h3 class="post-title">
+        
+            <a class="post-title-link" href="/2017/05/20/LeetCode-695-1/" itemprop="url">
+              
+                <span itemprop="name">Problems of "islands"</span>
+              
+            </a>
+        
+      </h3>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2017-05-20T17:53:36-04:00"
+              content="2017-05-20" >
+          05-20
         </time>
       </div>
 
@@ -925,67 +981,6 @@
 
           if ('auto' === 'auto') {
             input.addEventListener('input', inputEventFunction);
-          } else {
-            $('.search-icon').click(inputEventFunction);
-            input.addEventListener('keypress', function (event) {
-              if (event.keyCode === 13) {
-                inputEventFunction();
-              }
-            });
-          }
-
-          // remove loading animation
-          $(".local-search-pop-overlay").remove();
-          $('body').css('overflow', '');
-
-          proceedsearch();
-        }
-      });
-    }
-
-    // handle and trigger popup window;
-    $('.popup-trigger').click(function(e) {
-      e.stopPropagation();
-      if (isfetched === false) {
-        searchFunc(path, 'local-search-input', 'local-search-result');
-      } else {
-        proceedsearch();
-      };
-    });
-
-    $('.popup-btn-close').click(onPopupClose);
-    $('.popup').click(function(e){
-      e.stopPropagation();
-    });
-    $(document).on('keyup', function (event) {
-      var shouldDismissSearchPopup = event.which === 27 &&
-        $('.search-popup').is(':visible');
-      if (shouldDismissSearchPopup) {
-        onPopupClose();
-      }
-    });
-  </script>
-
-
-
-
-
-  
-
-  
-
-  
-
-  
-  <script type="text/javascript" src="/js/src/js.cookie.js?v=5.1.1"></script>
-  <script type="text/javascript" src="/js/src/scroll-cookie.js?v=5.1.1"></script>
-
-
-  
-
-</body>
-</html>
-tFunction);
           } else {
             $('.search-icon').click(inputEventFunction);
             input.addEventListener('keypress', function (event) {
